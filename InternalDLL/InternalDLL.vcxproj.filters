@@ -238,6 +238,81 @@
     <ClInclude Include="dependencies\ImGui\imconfig.h">
       <Filter>dependencies\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\Vector.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\UnorderedMap.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\RefCountedPtr.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\RefCountedObject.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\Optional.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\Map.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\LuaBridge.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\List.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\Array.h">
+      <Filter>dependencies\LuaBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\CFunctions.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\ClassInfo.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Config.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Constructor.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\dump.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\FuncTraits.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Iterator.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\LuaException.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\LuaHelpers.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\LuaRef.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Namespace.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Security.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Stack.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\TypeList.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\TypeTraits.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\LuaBridge\detail\Userdata.h">
+      <Filter>dependencies\LuaBridge\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="dependencies">
@@ -272,6 +347,12 @@
     </Filter>
     <Filter Include="utils\lua">
       <UniqueIdentifier>{a9fe780d-b477-4f9c-9ee0-4aa35b868f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\LuaBridge">
+      <UniqueIdentifier>{228d3b47-6f37-423f-8ffe-a58ef3483119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\LuaBridge\detail">
+      <UniqueIdentifier>{08d0f5ff-87ea-467b-817c-5e9c33bdbe48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

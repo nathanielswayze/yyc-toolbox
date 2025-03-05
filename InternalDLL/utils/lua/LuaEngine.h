@@ -1,9 +1,9 @@
 #pragma once
 #include <mutex>
 #include "../../dependencies/lua/lua.hpp"
+#include "../../dependencies/LuaBridge/LuaBridge.h"
+#include "../../dependencies/LuaBridge/Optional.h"
 #include "APIWrapper.h"
-#include <LuaBridge/LuaBridge.h>
-#include <LuaBridge/Optional.h>
 
 #define LOCKLUA() std::lock_guard<std::mutex> lock(g_pLuaEngine->m)
 

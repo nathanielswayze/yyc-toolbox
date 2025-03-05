@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Drawing.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="dependencies\ImGui\imgui.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_demo.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_draw.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_impl_dx11.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_impl_win32.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_tables.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_widgets.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\minhook\buffer.c">
+      <Filter>dependencies\minhook</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\minhook\hook.c">
+      <Filter>dependencies\minhook</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\minhook\trampoline.c">
+      <Filter>dependencies\minhook</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\minhook\hde\hde32.c">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\minhook\hde\hde64.c">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\hooks.cpp">
+      <Filter>hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\memory.cpp">
+      <Filter>dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\base64.cpp">
+      <Filter>dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\api.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\logging.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\imgui_stdlib.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\Zydis\Zydis.c">
+      <Filter>dependencies\Zydis</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\lua\LuaEngine.cpp" />
+    <ClCompile Include="dependencies\ImGui\implot.cpp" />
+    <ClCompile Include="dependencies\ImGui\implot_demo.cpp" />
+    <ClCompile Include="dependencies\ImGui\implot_items.cpp" />
+    <ClCompile Include="utils\GMLParser.cpp" />
+    <ClCompile Include="datatypes\YYGML.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Drawing.h" />
+    <ClInclude Include="ImGui\imconfig.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="dependencies\ImGui\imgui.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imgui_impl_dx11.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imgui_impl_win32.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imgui_internal.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imstb_rectpack.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imstb_textedit.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imstb_truetype.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\buffer.h">
+      <Filter>dependencies\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\minhook.h">
+      <Filter>dependencies\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\trampoline.h">
+      <Filter>dependencies\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\hde\hde32.h">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\hde\hde64.h">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\hde\pstdint.h">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\hde\table32.h">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\minhook\hde\table64.h">
+      <Filter>dependencies\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\detourhook.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\hooks.h">
+      <Filter>hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\memory.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\pe64.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\base64.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes\Ref.h">
+      <Filter>datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes\YYGML.h">
+      <Filter>datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes\YYRunnerInterface.h">
+      <Filter>datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes\YYRValue.h">
+      <Filter>datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes\YYSlot.h">
+      <Filter>datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="datatypes\YYStd.h">
+      <Filter>datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\api.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\cppregex.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\string_utils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\logging.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\crt.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\stb_sprintf.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="dependencies\ImGui\imgui_stdlib.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\Zydis\Zydis.h">
+      <Filter>dependencies\Zydis</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\GMLParser.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imconfig.h" />
+    <ClInclude Include="dependencies\lua\lauxlib.h" />
+    <ClInclude Include="dependencies\lua\lua.h" />
+    <ClInclude Include="dependencies\lua\lua.hpp" />
+    <ClInclude Include="dependencies\lua\luaconf.h" />
+    <ClInclude Include="dependencies\lua\lualib.h" />
+    <ClInclude Include="utils\lua\LuaEngine.h" />
+    <ClInclude Include="utils\lua\APIWrapper.h" />
+    <ClInclude Include="utils\RemoteAPI.h" />
+    <ClInclude Include="dependencies\httplib.h" />
+    <ClInclude Include="dependencies\ImGui\ImGuiNotify.h" />
+    <ClInclude Include="dependencies\FontAwesome\IconsFontAwesome6.h" />
+    <ClInclude Include="dependencies\FontAwesome\fa-solid-900.h" />
+    <ClInclude Include="dependencies\ImGui\implot.h" />
+    <ClInclude Include="dependencies\ImGui\implot_internal.h" />
+    <ClInclude Include="utils\hwid.h" />
+    <ClInclude Include="dependencies\montserrat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="dependencies">
+      <UniqueIdentifier>{48eb39b4-b0d6-40dc-9915-06c0f2fabbb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\ImGui">
+      <UniqueIdentifier>{4c371569-af04-45f2-9021-95e73785613d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\minhook">
+      <UniqueIdentifier>{1224f690-84c2-4fee-9fe0-5f4133c48399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\minhook\hde">
+      <UniqueIdentifier>{79c0a35c-2dfb-4c0d-925a-8329ec560439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking">
+      <UniqueIdentifier>{9e6b6109-0a77-4255-bc8c-7ea45487cac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="datatypes">
+      <UniqueIdentifier>{f5e6145c-c19b-4b20-88df-8b9aa0835a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{052a1122-b21b-444a-b33b-6285ecb45819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\Zydis">
+      <UniqueIdentifier>{72d4c40c-a132-43f1-8e0e-07e695643e54}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

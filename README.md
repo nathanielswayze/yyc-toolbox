@@ -46,4 +46,8 @@ Discord server. Link can be found at the beginning of this README.
 
 [omar](https://github.com/ocornut), for developing the masterpiece that ImGui is (a little bit of glaze never hurt anybody)
 
+[Lartu](https://github.com/Lartu), for making [cppregex](https://github.com/Lartu/cppregex).
+
+[yhirose](https://github.com/yhirose), for making [cpp-httplib](https://github.com/yhirose/cpp-httplib).
+
 And all the anonymous beta testers, too. DM me if you want to be listed here.

@@ -185,13 +185,11 @@
     <ClInclude Include="dependencies\Zydis\Zydis.h" />
     <ClInclude Include="Drawing.h" />
     <ClInclude Include="hooking\hooks.h" />
-    <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="utils\api.h" />
     <ClInclude Include="utils\crt.h" />
     <ClInclude Include="utils\GMLParser.h" />
-    <ClInclude Include="utils\hwid.h" />
     <ClInclude Include="utils\logging.h" />
     <ClInclude Include="utils\lua\APIWrapper.h" />
     <ClInclude Include="utils\lua\LuaEngine.h" />

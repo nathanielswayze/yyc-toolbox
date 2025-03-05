@@ -61,16 +61,27 @@
     <ClCompile Include="dependencies\Zydis\Zydis.c">
       <Filter>dependencies\Zydis</Filter>
     </ClCompile>
-    <ClCompile Include="utils\lua\LuaEngine.cpp" />
-    <ClCompile Include="dependencies\ImGui\implot.cpp" />
-    <ClCompile Include="dependencies\ImGui\implot_demo.cpp" />
-    <ClCompile Include="dependencies\ImGui\implot_items.cpp" />
-    <ClCompile Include="utils\GMLParser.cpp" />
-    <ClCompile Include="datatypes\YYGML.cpp" />
+    <ClCompile Include="datatypes\YYGML.cpp">
+      <Filter>datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\implot_demo.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\implot_items.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="dependencies\ImGui\implot.cpp">
+      <Filter>dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\lua\LuaEngine.cpp">
+      <Filter>utils\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\GMLParser.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawing.h" />
-    <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="dependencies\ImGui\imgui.h">
@@ -179,23 +190,54 @@
     <ClInclude Include="utils\GMLParser.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="dependencies\ImGui\imconfig.h" />
-    <ClInclude Include="dependencies\lua\lauxlib.h" />
-    <ClInclude Include="dependencies\lua\lua.h" />
-    <ClInclude Include="dependencies\lua\lua.hpp" />
-    <ClInclude Include="dependencies\lua\luaconf.h" />
-    <ClInclude Include="dependencies\lua\lualib.h" />
-    <ClInclude Include="utils\lua\LuaEngine.h" />
-    <ClInclude Include="utils\lua\APIWrapper.h" />
-    <ClInclude Include="utils\RemoteAPI.h" />
-    <ClInclude Include="dependencies\httplib.h" />
-    <ClInclude Include="dependencies\ImGui\ImGuiNotify.h" />
-    <ClInclude Include="dependencies\FontAwesome\IconsFontAwesome6.h" />
-    <ClInclude Include="dependencies\FontAwesome\fa-solid-900.h" />
-    <ClInclude Include="dependencies\ImGui\implot.h" />
-    <ClInclude Include="dependencies\ImGui\implot_internal.h" />
-    <ClInclude Include="utils\hwid.h" />
-    <ClInclude Include="dependencies\montserrat.h" />
+    <ClInclude Include="dependencies\FontAwesome\fa-solid-900.h">
+      <Filter>dependencies\FontAwesome</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\FontAwesome\IconsFontAwesome6.h">
+      <Filter>dependencies\FontAwesome</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\implot_internal.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\implot.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\ImGuiNotify.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lua.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lua.hpp">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\luaconf.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lauxlib.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lualib.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\httplib.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\montserrat.h">
+      <Filter>dependencies</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\lua\APIWrapper.h">
+      <Filter>utils\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\lua\LuaEngine.h">
+      <Filter>utils\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\RemoteAPI.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\ImGui\imconfig.h">
+      <Filter>dependencies\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="dependencies">
@@ -221,6 +263,15 @@
     </Filter>
     <Filter Include="dependencies\Zydis">
       <UniqueIdentifier>{72d4c40c-a132-43f1-8e0e-07e695643e54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\FontAwesome">
+      <UniqueIdentifier>{1d637543-4b74-4d11-96ab-59f3549e3a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\lua">
+      <UniqueIdentifier>{47da3fc9-d984-4665-aaf5-8bb8d658416c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\lua">
+      <UniqueIdentifier>{a9fe780d-b477-4f9c-9ee0-4aa35b868f3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

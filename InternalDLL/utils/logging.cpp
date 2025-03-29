@@ -225,6 +225,13 @@ L::Stream_t& L::Stream_t::operator<<(const wchar_t* wszMessage)
 	return *this;
 }
 
+L::Stream_t & L::Stream_t::operator<<(const std::string bValue)
+{
+	const char* szMessage = bValue.c_str();
+	WriteMessage(szMessage, CRT::StringLength(szMessage));
+	return *this;
+}
+
 L::Stream_t& L::Stream_t::operator<<(const bool bValue)
 {
 	const char* szBoolean = ((nModeFlags & LOG_MODE_BOOL_ALPHA) ? (bValue ? "true" : "false") : (bValue ? "1" : "0"));

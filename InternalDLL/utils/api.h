@@ -25,10 +25,10 @@ namespace API {
 	YYObjectBase* GetGlobalVars();
 	SLLVMVars* GetVariables();
 	bool* IsGameNotSandboxed();
-	void GetCodeList(std::vector<UI::CodeItem>* funcs);
 	const char* GetVariableNameById(__int64 obj, int id);
 	void GetGlobalVariables(std::vector<std::string>* items);
 	RValue GetGlobalValue(std::string var_name);
+	void GetCodeList(std::vector<UI::CodeItem>* funcs);
 	void GetResourceList(std::vector<UI::ResourceItem>* items, int type);
 	void GetResourceListAsync(void** threadInfo);
 	void GetObjectList(std::vector<UI::ResourceItem>* items);

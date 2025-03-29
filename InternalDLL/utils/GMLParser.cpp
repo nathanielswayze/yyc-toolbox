@@ -229,7 +229,7 @@ namespace PARSER {
     }
 
     void Interpreter::executeStatement(const std::vector<Token>& tokens, size_t& index) {
-        L_PRINT(LOG_INFO) << "Evaluating: " << tokens[index].value.c_str() << " at index " << index
+        L_PRINT(LOG_INFO) << "Evaluating: " << tokens[index].value << " at index " << index
             << " of type " << static_cast<int>(tokens[index].type);
 
         if (tokens[index].type == TokenType::Keyword && tokens[index].value == "if") {
@@ -307,10 +307,10 @@ namespace PARSER {
         index++;  // Consume ')'
 
         // Simulate function execution
-        L_PRINT(LOG_INFO) << "Function Call: " << functionName.c_str() << " with arguments: ";
+        L_PRINT(LOG_INFO) << "Function Call: " << functionName << " with arguments: ";
         for (unsigned int i = 0; i < arguments.size(); i++) {
             const auto& arg = arguments[i];
-            L_PRINT(LOG_INFO) << API::RValueToString(arg).c_str();
+            L_PRINT(LOG_INFO) << API::RValueToString(arg);
         }
         CInstance* ctx = execution_context < 0 ? nullptr : API::GetObjectInstanceFromId(execution_context);
 
@@ -425,7 +425,7 @@ namespace PARSER {
                 RValue _right = parsePrimary(tokens, index);
                 double right = _right.asReal();
 
-                L_PRINT(LOG_INFO) << "Evaluating: " << left << " " << op.c_str() << " " << right;
+                L_PRINT(LOG_INFO) << "Evaluating: " << left << " " << op << " " << right;
 
                 if (op == ">") {
                     left = left > right;

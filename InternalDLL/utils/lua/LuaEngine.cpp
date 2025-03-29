@@ -1,8 +1,9 @@
 #include "LuaEngine.h"
 #include <iostream>
-#include "../logging.h"
-#include "../../Drawing.h"
 #include "../api.h"
+#include "../logging.h"
+#include "../GMLParser.h"
+#include "../../Drawing.h"
 
 LuaEngine* g_pLuaEngine = new LuaEngine();
 
@@ -51,13 +52,92 @@ void LuaEngine::ExecuteString(const char* expression)
 	report_errors(state);
 }
 
-void PrintOverride(const char* s, lua_State* L) {
-	if (YY_ISINVALIDPTR(s))
-	{
-		L_PRINT(LOG_INFO) << "";
+void PrintTable(lua_State* L, int idx, std::stringstream& ss, int depth = 0) {
+	if (depth > 3) {
+		ss << "{...}";
 		return;
 	}
-	L_PRINT(LOG_INFO) << s;
+
+	ss << "{";
+	bool first = true;
+
+	lua_pushvalue(L, idx);
+	lua_pushnil(L);
+
+	while (lua_next(L, -2) != 0) {
+		if (!first) ss << ", ";
+		first = false;
+
+		if (lua_type(L, -2) == LUA_TSTRING) {
+			ss << lua_tostring(L, -2) << " = ";
+		}
+		else {
+			ss << "[" << lua_tonumber(L, -2) << "] = ";
+		}
+
+		int type = lua_type(L, -1);
+		switch (type) {
+		case LUA_TTABLE:
+			PrintTable(L, lua_gettop(L), ss, depth + 1);
+			break;
+		case LUA_TSTRING:
+			ss << "\"" << lua_tostring(L, -1) << "\"";
+			break;
+		case LUA_TNUMBER:
+			ss << lua_tonumber(L, -1);
+			break;
+		case LUA_TBOOLEAN:
+			ss << (lua_toboolean(L, -1) ? "true" : "false");
+			break;
+		default:
+		{
+			const void* p = lua_topointer(L, -1);
+			ss << "<" << lua_typename(L, type) << " at 0x" << std::hex << p << ">";
+		}
+		break;
+		}
+
+		lua_pop(L, 1);
+	}
+
+	lua_pop(L, 1);
+	ss << "}";
+}
+
+void PrintOverride(lua_State* L) {
+	int n = lua_gettop(L);
+	std::stringstream ss;
+
+	for (int i = 1; i <= n; i++) {
+		if (i > 1) ss << " ";
+
+		int type = lua_type(L, i);
+		switch (type) {
+		case LUA_TNIL:
+			ss << "nil";
+			break;
+		case LUA_TBOOLEAN:
+			ss << (lua_toboolean(L, i) ? "true" : "false");
+			break;
+		case LUA_TNUMBER:
+			ss << lua_tonumber(L, i);
+			break;
+		case LUA_TSTRING:
+			ss << lua_tostring(L, i);
+			break;
+		case LUA_TTABLE:
+			PrintTable(L, i, ss);
+			break;
+		default:
+		{
+			const void* p = lua_topointer(L, -1);
+			ss << "<" << lua_typename(L, type) << " at 0x" << std::hex << p << ">";
+		}
+		break;
+		}
+	}
+
+	L_PRINT(LOG_INFO) << ss.str();
 }
 
 IEngineInterface GetEngine()
@@ -148,6 +228,10 @@ IRValue ConvertRValue(lua_State* L) {
 	return result;
 }
 
+void IEngineInterface::EvaluateGML(const char* code) {
+	PARSER::ExecuteCode(code);
+}
+
 void LuaEngine::Init()
 {
 	LOCKLUA();
@@ -162,6 +246,10 @@ void LuaEngine::Init()
 		.addFunction("GetObjectByName", &IEngineInterface::ObjectByName)
 		.addFunction("Eval", &IEngineInterface::EvaluateGML)
 		.endClass()
+		.beginClass<IObjectInstance>("ObjectInstance")
+		.addFunction("__index", &IObjectInstance::Index)
+		.addFunction("__newindex", &IObjectInstance::NewIndex)
+		.endClass()
 		.beginClass<IObjectInterface>("ObjectInterface")
 		.addProperty("Name", &IObjectInterface::GetName, &IObjectInterface::SetName)
 		.addProperty("Parent", &IObjectInterface::m_ParentObject, false)
@@ -172,6 +260,8 @@ void LuaEngine::Init()
 		.addProperty("ID", &IObjectInterface::m_ID, false)
 		.addFunction("Spawn", &IObjectInterface::Spawn)
 		.addFunction("Destroy", &IObjectInterface::Destroy)
+		.addFunction("GetInstances", &IObjectInterface::GetInstances)
+		.addFunction("__newindex", &IObjectInterface::NewIndex)
 		.endClass()
 		.beginClass<IRValue>("RValue")
 		.addProperty("type", &IRValue::m_Kind, false)
@@ -180,7 +270,9 @@ void LuaEngine::Init()
 		.addFunction("toReal", &IRValue::GetValue)
 		.addFunction("stringify", &IRValue::ToString)
 		.addFunction("__add", &IRValue::operator+)
+		.addFunction("__sub", &IRValue::operator-)
 		.addFunction("__mul", &IRValue::operator*)
+		.addFunction("__div", &IRValue::operator/)
 		.endClass()
 		.addFunction("GetEngine", &GetEngine)
 		.addFunction("CallFunction", &CallFunction)

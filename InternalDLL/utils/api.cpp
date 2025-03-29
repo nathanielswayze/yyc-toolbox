@@ -203,19 +203,6 @@ bool* API::IsGameNotSandboxed() {
 	return reinterpret_cast<bool*>(MEM::GetAbsoluteAddress(MEM::PatternScan(nullptr, "88 05 ? ? ? ? 8B 7B"), 0x2));
 }
 
-void API::GetCodeList(std::vector<UI::CodeItem>* funcs) {
-	funcs->clear();
-	SLLVMVars* vars = GetVariables();
-	int size = vars->nYYCode;
-	for (unsigned int i = 0; i < size; i++) {
-		std::string name(vars->pGMLFuncs[i].pName);
-		UI::CodeItem item{};
-		item.name = name;
-		item.idx = i;
-		funcs->push_back(item);
-	}
-}
-
 const char* API::GetVariableNameById(__int64 obj, int id) {
 	using fOriginal = const char* __fastcall(__int64, int);
 	auto oOriginal = reinterpret_cast<fOriginal*>(MEM::PatternScan(nullptr, "48 83 EC ? 81 FA ? ? ? ? 0F 8C"));
@@ -267,6 +254,19 @@ RValue API::GetGlobalValue(std::string var_name) {
 			return RValue(*val.m_Value);
 	}
 	return RValue(0);
+}
+
+void API::GetCodeList(std::vector<UI::CodeItem>* funcs) {
+	funcs->clear();
+	SLLVMVars* vars = GetVariables();
+	int size = vars->nYYCode;
+	for (unsigned int i = 0; i < size; i++) {
+		std::string name(vars->pGMLFuncs[i].pName);
+		UI::CodeItem item{};
+		item.name = name;
+		item.idx = i;
+		funcs->push_back(item);
+	}
 }
 
 void API::GetResourceList(std::vector<UI::ResourceItem>* items, int type) {

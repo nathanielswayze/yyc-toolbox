@@ -3,6 +3,7 @@
 #include "../../dependencies/lua/lua.hpp"
 #include "../../dependencies/LuaBridge/LuaBridge.h"
 #include "../../dependencies/LuaBridge/Optional.h"
+#include "../../dependencies/LuaBridge/Vector.h"
 #include "APIWrapper.h"
 
 #define LOCKLUA() std::lock_guard<std::mutex> lock(g_pLuaEngine->m)
@@ -11,8 +12,6 @@ class LuaEngine
 {
 public:
 	LuaEngine() : m_L(luaL_newstate()) { luaL_openlibs(m_L); }
-	LuaEngine(const LuaEngine& other);
-	LuaEngine& operator=(const LuaEngine&);
 	~LuaEngine() { lua_close(m_L); }
 
 	lua_State* L();

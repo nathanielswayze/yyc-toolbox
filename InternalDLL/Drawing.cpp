@@ -67,7 +67,6 @@ std::string currentDisasm;
 std::string currentCode;
 
 std::string executorCode;
-double compatibility = -1;
 
 using OpenedManagers_t = unsigned int;
 enum EOpenedManagers : OpenedManagers_t
@@ -106,62 +105,9 @@ struct RollingBuffer {
 	}
 };
 
-std::string animateString(const std::string& word) {
-	std::string end = "";
-	unsigned int upper_idx = 0;
-	for (int i = 0; i < word.size(); i++) {
-		unsigned int next_letter = (i + 1) % (word.size() - 1);
-		if (std::isspace(word[next_letter]))
-			next_letter = (i + 2) % (word.size() - 1);
-		char c = word[i];
-		if (std::isupper(c)) {
-			c = std::tolower(c);
-			upper_idx = next_letter;
-		}
-		end += c;
-	}
-	end[upper_idx] = std::toupper(end[upper_idx]);
-	return end;
-}
-
 int selectedTheme = 0;
 void Drawing::Draw()
 {
-	static bool isIntro = true;
-	static HANDLE CacheThread = nullptr;
-	if (isIntro) {
-		static std::string intro_status = "Working on stuff";
-		static double timer = 0;
-		static double oldTimer = 0;
-		ImGuiIO& io = ImGui::GetIO();
-		ImDrawList* list = ImGui::GetForegroundDrawList();
-		float size = ImGui::CalcTextSize(intro_status.c_str()).x;
-		list->AddText(io.FontDefault, 13.f, ImVec2((io.DisplaySize.x / 2.f) - size, io.DisplaySize.y / 2.f), ImColor(1.f, 1.f, 1.f), intro_status.c_str());
-		if (timer - oldTimer > 0.1)
-		{
-			intro_status = animateString(intro_status);
-			oldTimer = timer;
-		}
-		timer += io.DeltaTime;
-		static unsigned int fails = -1;
-		if (YY_ISINVALIDPTR(CacheThread)) {
-			CacheThread = ::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)MEM::CachePatterns, &fails, NULL, NULL);
-		}
-		else {
-			DWORD waitResult = WaitForSingleObject(CacheThread, 0);
-			switch (waitResult) {
-			case WAIT_OBJECT_0:
-				CloseHandle(CacheThread);
-				CacheThread = nullptr;
-				isIntro = false;
-				bDraw = true;
-				ImGui::InsertNotification({ fails > 0 ? ImGuiToastType::Warning : ImGuiToastType::Success, "Failed to cache %d pattern(s).", fails });
-				break;
-			}
-		}
-		return;
-	}
-
 #ifdef _DEBUG
 	ImGui::Begin("YYC Toolbox debugger!!!!");
 	{
@@ -1434,17 +1380,6 @@ obj->m_ID);
 						ImGui::CloseCurrentPopup();
 					ImGui::EndPopup();
 				}
-
-				std::string percentage = "";
-				if (compatibility < 0)
-					percentage = "...";
-				else
-					percentage = std::to_string(compatibility);
-				std::string str = std::format("This game is {}%% compatible with YYC Toolbox.", percentage);
-				ImGui::Text(str.c_str());
-				ImGui::SameLine();
-				if (ImGui::Button("Calculate"))
-					compatibility = MEM::CalculateCompatibility();
 
 #ifdef _DEBUG
 				static bool showDemoWindow = false;

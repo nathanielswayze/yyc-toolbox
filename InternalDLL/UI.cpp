@@ -179,7 +179,7 @@ void UI::CreateRenderTarget()
                 desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2DMS;
                 if (FAILED(pd3dDevice->CreateRenderTargetView(pBackBuffer, &desc, &pMainRenderTargetView)))
                 {
-                    L_PRINT(LOG_WARNING) << "failed to create render target view with D3D11_RTV_DIMENSION_TEXTURE2D...";
+                    L_PRINT(LOG_WARNING) << "failed to create render target view with D3D11_RTV_DIMENSION_TEXTURE2DMS...";
                     L_PRINT(LOG_INFO) << "retrying...";
                     if (FAILED(pd3dDevice->CreateRenderTargetView(pBackBuffer, NULL, &pMainRenderTargetView)))
                     {

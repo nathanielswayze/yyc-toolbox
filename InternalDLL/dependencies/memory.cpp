@@ -34,86 +34,7 @@ std::string narrow(const std::wstring& str)
     return stm.str();
 }
 
-std::unordered_map<std::string, std::uint8_t*> patterns = {
-    /* XREF inside CREATE_RVALUE_MUTEX to g_rvalueMutex */
-    {"48 83 3D ? ? ? ? ? 75 ? B9 ? ? ? ? E8 ? ? ? ? 48 8D 15", 0},
-    /* XREF inside Variable_Builtin_Add to builtin_variables */
-    {"4C 8D 35 ? ? ? ? 49 03 DE", 0},
-    /* XREF inside Variable_GetValue to Variable_GetValue_Direct */
-    {"E9 ? ? ? ? 85 C9 78 ? 41 81 FA", 0},
-    /* Variable_BuiltIn_Find */
-    {"48 89 5C 24 ? 57 48 83 EC ? 48 8B 3D ? ? ? ? E8 ? ? ? ? 44 8B 4F", 0},
-    /* BOOL_RValue */
-    {"40 53 48 83 EC ? 44 8B 49 ? 45 32 C0", 0},
-    /* REAL_RValue_Ex */
-    {"40 53 48 83 EC ? 8B 41 ? 0F 57 C0", 0},
-    /* XREF inside F_Method to the_functions */
-    {"48 8B 05 ? ? ? ? C7 47", 0},
-    /* YYGML_CallLegacyFunction */
-    {"40 55 41 54 41 55 41 56 41 57 48 83 EC ? 48 8D 6C 24 ? 48 89 5D ? 48 89 75 ? 48 89 7D ? 48 8B 05 ? ? ? ? 48 33 C5 48 89 45 ? 48 63 45", 0}, // backup zalupa 1337
-    /* DeterminePotentialRoot */
-    {"48 89 5C 24 ? 57 48 83 EC ? 80 3D ? ? ? ? ? 48 8B FA", 0},
-    /* GetContextStackTop */
-    {"8B 05 ? ? ? ? 85 C0 7E ? FF C8 48 63 C8 48 8B 05 ? ? ? ? 48 8B 04 C8", 0},
-    /* XREF inside F_StringDelete to YYAlloc */
-    {"E8 ? ? ? ? 48 89 03 89 6B", 0},
-    /* YYRealloc */
-    {"48 83 EC ? 48 63 D2", 0},
-    /* XREF inside SGamepadMapping::ToString to YYFree */
-    {"E8 ? ? ? ? 90 48 8B C3 EB", 0},
-    /* XREF inside InputQuery::Input to YYStrDup */
-    {"E8 ? ? ? ? 49 89 06 B0", 0},
-    /* YYstrnlen */
-    {"48 89 5C 24 ? 57 48 83 EC ? 48 63 DA 48 8B F9 4C 8B C3", 0},
-    /* XREF inside HTTP_REQ_CONTEXT::SetResponseHeaders to YYCreateString */
-    {"E8 ? ? ? ? 2B FB", 0},
-    /* XREF inside CreateDsMap to YYSetString */
-    {"E8 ? ? ? ? F2 41 0F 10 46", 0},
-    /* YYConstString */
-    {"48 89 5C 24 ? 57 48 83 EC ? 48 8B F9 48 8B DA B9 ? ? ? ? E8 ? ? ? ? 48 89 44 24", 0},
-    /* XREF inside F_AnimcurveGetChannelIndex to YYGetString */
-    {"E8 ? ? ? ? 48 63 8E", 0},
-    /* Code_Function_Find */
-    {"48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? C7 02", 0},
-    /* YYError */
-    {"48 89 4C 24 ? 48 89 54 24 ? 4C 89 44 24 ? 4C 89 4C 24 ? 53 48 81 EC", 0},
-    /* VMError */
-    {"48 89 54 24 ? 4C 89 44 24 ? 4C 89 4C 24 ? 53 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 ? ? ? ? 80 3D ? ? ? ? ? 48 8B DA", 0},
-    /* ResourceGetTypeIndex */
-    {"48 89 5C 24 ? 57 48 83 EC ? 48 8B DA 48 8B F9 E8 ? ? ? ? 85 C0", 0},
-    /* ResourceGetName */
-    {"40 53 48 83 EC ? FF C2", 0},
-    /* XREF inside Command_ChangeAt to Object_Exists */
-    {"E8 ? ? ? ? 84 C0 75 ? 45 33 F6 4C 8D 3D", 0},
-    /* Room_Exists */
-    {"85 C9 78 ? 48 63 C9", 0},
-    /* Script_Exists */
-    {"81 F9 ? ? ? ? 8D 81 ? ? ? ? 0F 4C C1 32 D2", 0},
-    /* Object_GetInstance */
-    {"4C 63 C9 41 83 F9 ? 75", 0},
-    /* Code_Variable_Find */
-    {"40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 85 C0 0F 89", 0},
-    /* Code_Variable_Find_Slot_From_Name */
-    {"48 83 EC ? 48 8B 0D ? ? ? ? E8 ? ? ? ? 48 85 C0", 0},
-    /* XREF inside CreateColPairs to g_ObjectHash */
-    {"4C 8B 1D ? ? ? ? E9", 0},
-    /* XREF inside Variable_Global_SetVar to g_pGlobal */
-    {"4C 8B 05 ? ? ? ? 8B 5E", 0},
-    /* XREF inside CCode::CCode to g_pLLVMVars */
-    {"48 8B 05 ? ? ? ? 44 8D 45", 0},
-    /* Code_Variable_Find_Name */
-    {"48 83 EC ? 81 FA ? ? ? ? 0F 8C", 0},
-    /* ExecuteIt */
-    {"48 89 5C 24 ? 48 89 6C 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 80 3D", 0},
-    /* XREF inside Path_Duplicate to Path_Main */
-    {"48 8B 0D ? ? ? ? 48 89 04 D1 B9 ? ? ? ? E8 ? ? ? ? 48 89 44 24 ? 48 85 C0 74 ? 48 8B C8 E8 ? ? ? ? 48 8B D0 EB ? 33 D2 8B 05 ? ? ? ? FF C8 48 63 C8 48 8B 05 ? ? ? ? 48 89 14 C8 8B 05 ? ? ? ? FF C8 4C 63 C0", 0}, // long zalupa
-    /* CPath::Draw */
-    {"4C 8B DC 49 89 5B ? 57 48 81 EC", 0},
-    /* XREF inside CAnimCurve::`vector deleting destructor'(uint) to CAnimCurveManager */
-    {"FF 0D ? ? ? ? 48 8B CB", 0},
-    /* XREF inside Script_Prepare to Script_Main (void *g_ppGlobalScripts) */
-    {"48 89 05 ? ? ? ? 41 8B F7", 0},
-};
+std::unordered_map<std::string, std::uint8_t*> patterns{};
 
 /*
      * @brief Scan for a given byte pattern on a module
@@ -127,16 +48,15 @@ std::uint8_t* MEM::PatternScan(const char* modName, const char* signature)
 {
     std::string search(signature);
     decltype(patterns)::iterator it = patterns.find(search);
-    if (it != patterns.end()) {
-        std::uint8_t* addy = it->second;
-        if (addy)
-            return addy;
-    }
+    if (it != patterns.end())
+        return it->second;
+
+    L_PRINT(LOG_INFO) << "Scanning memory for sig: " << signature;
     
     void* module = GetModuleBaseHandle(modName);
     if (!module)
         return nullptr;
-    L_PRINT(LOG_INFO) << "Scanning memory for sig: " << signature;
+
     static auto pattern_to_byte = [](const char* pattern) {
         auto bytes = std::vector<int>{};
         auto start = const_cast<char*>(pattern);
@@ -175,10 +95,7 @@ std::uint8_t* MEM::PatternScan(const char* modName, const char* signature)
             }
         }
         if (found) {
-            if (it == patterns.end()) {
-                L_PRINT(LOG_WARNING) << "Unmapped signature: " << signature;
-                patterns.insert({ search, &scanBytes[i] });
-            }
+            patterns.insert({ search, &scanBytes[i] });
             L_PRINT(LOG_INFO) << "Match found for signature at: " << (uint64_t)&scanBytes[i];
             return &scanBytes[i];
         }
@@ -187,32 +104,6 @@ std::uint8_t* MEM::PatternScan(const char* modName, const char* signature)
     MessageBoxA(NULL, error_msg.c_str(), "YYC Toolbox - whoops!", MB_OK | MB_ICONERROR);
     L_PRINT(LOG_ERROR) << "Invalid signature. Could not find anything.";
     return nullptr;
-}
-
-void MEM::CachePatterns(unsigned int* result)
-{
-    unsigned int fails = 0;
-    for (auto& pattern : patterns) {
-        if (pattern.second == 0) {
-            std::uint8_t* address = MEM::PatternScan(nullptr, pattern.first.c_str());
-            if (!address)
-                fails++;
-            else
-                pattern.second = address;
-        }
-    }
-    *result = fails;
-}
-
-double MEM::CalculateCompatibility()
-{
-    unsigned int finds = 0;
-    for (auto& pattern : patterns) {
-        std::uint8_t* address = MEM::PatternScan(nullptr, pattern.first.c_str());
-        if (address != nullptr)
-            finds++;
-    }
-    return static_cast<double>(finds) / (unsigned int)patterns.size() * 100;
 }
 
 void* MEM::GetModuleBaseHandle(const char* szModuleName) {

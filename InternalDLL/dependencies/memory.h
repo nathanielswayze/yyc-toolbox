@@ -26,8 +26,6 @@
 #include <string>
 
 namespace MEM {
-	void CachePatterns(unsigned int* result);
-	double CalculateCompatibility();
 	std::uint8_t* PatternScan(const char* moduleName, const char* signature);
 	void* GetModuleBaseHandle(const char* szModuleName);
 	void* GetModuleBaseHandle(const wchar_t* wszModuleName);

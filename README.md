@@ -2,7 +2,7 @@
 
 [![Join the Valkyrians discord server](https://img.shields.io/discord/1236119944714780672?label=Discord&logo=discord&logoColor=white)](https://discord.gg/FRgGkgUhRK)
 
-Basically a YYC mod tool. This is very much a WIP and will take some time to finish. As such, no releases will be built for now. It is only when it's fully finished for release that I will upload the loader.
+Basically a YYC mod tool. This is very much a WIP and will take some time to finish.
 
 ## Feature/plans list
 
@@ -12,7 +12,7 @@ For any potentially unimplemented features that you may need right now, we recom
 
 ## Installation
 
-As stated above, there's no releases yet. You'll either have to compile this on your own, or wait until I make a release. PRs to speed up the process are welcome. Feature suggestions are welcome. This repository is only meant for tracking changes for now.
+Download the DLL from Releases and inject it using your injector of choice.
 
 ## FAQ
 
@@ -24,7 +24,7 @@ YYC Toolbox works by injecting itself into the game and accessing the internal R
 
 A half-baked Lua API with a documentation we barely update? [Coming right up!](https://docs.x64dbg.ru/home)
 
-### When do you plan on releasing YYC Toolbox?
+### When do you plan on finishing YYC Toolbox?
 
 Deadline's Q4 2025. May be pushed back to Q1 2026. Tough to say for sure.
 

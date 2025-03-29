@@ -186,7 +186,7 @@ YYCEXTERN	bool	YYGML_Variable_GetValue(const YYRValue& _val, int var_ind, int ar
 YYCEXTERN	bool	YYGML_Variable_SetValue(const YYRValue& _val, int var_ind, int array_ind, RValue *res);
 YYCEXTERN	bool  	Variable_SetValue(const YYRValue& _val, int var_ind, int array_ind, RValue *res);
 YYCEXTERN	void  	YYGML_ErrCheck_Variable_GetValue(const YYRValue& _val, int var_ind, int array_ind, RValue *res, CInstance* _self, CInstance* _other);
-YYCEXTERN	CInstance*  	YYGML_FindInstance(int _ind);
+extern CInstance* YYGML_FindInstance(int _ind);
 YYCEXTERN	void YYGML_Check( void );
 
 YYCEXTERN YYRValue* ARRAY_LVAL_RValue(YYRValue* pV, int _index);
@@ -199,8 +199,8 @@ YYCEXTERN void YYError(const char* _error, ...);
 YYCEXTERN void YYprintf(const char* _error, ...);
 YYCEXTERN char* yyitoa(int _n, char* _pDest, int _radix);
 YYCEXTERN void STRING_RValue(char** _ppCurrent, char** _pBase, int* _pMaxLen, const RValue* _pV);
-YYCEXTERN int64 INT64_RValue(const RValue* _pV);
-YYCEXTERN int32 INT32_RValue(const RValue* _pV);
+extern int64 INT64_RValue(const RValue* _pV);
+extern int32 INT32_RValue(const RValue* _pV);
 extern bool BOOL_RValue(const RValue* _pV);
 FORCEINLINE bool BOOL_RValue(const YYRValue& _v) FORCEINLINE_ATTR;
 FORCEINLINE bool BOOL_RValue(const YYRValue& _v) { return BOOL_RValue((const RValue*)&_v); }
@@ -1062,16 +1062,6 @@ private:
 public:
 
 	CInstanceInternal& GetMembers();
-
-	// Overloaded operators
-	RValue& operator[](
-		IN std::string_view Element
-		);
-
-	// STL-like access
-	RValue& at(
-		IN std::string_view Element
-	);
 };
 
 template <typename T>

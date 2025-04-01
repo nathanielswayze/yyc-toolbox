@@ -219,6 +219,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="utils\api.h" />
+    <ClInclude Include="utils\code\decompiler.h" />
     <ClInclude Include="utils\crt.h" />
     <ClInclude Include="utils\GMLParser.h" />
     <ClInclude Include="utils\logging.h" />
@@ -253,9 +254,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="utils\api.cpp" />
+    <ClCompile Include="utils\code\decompiler.cpp" />
     <ClCompile Include="utils\GMLParser.cpp" />
     <ClCompile Include="utils\logging.cpp" />
     <ClCompile Include="utils\lua\LuaEngine.cpp" />
+    <ClCompile Include="utils\RemoteAPI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

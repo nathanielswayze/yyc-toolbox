@@ -3240,7 +3240,7 @@ FORCEINLINE int NOTHROW_ATTR YYGML_array_length(const YYRValue& _arg0)
 // This function routes any unknown functions to the correct destination
 static YYRValue& YYGML_CallLegacyFunction(CInstance* _pSelf, CInstance* _pOther, YYRValue& _result, int _argc, int _id, YYRValue** _args) {
 	// Basically rebuilt?
-	std::uint8_t* xref = MEM::PatternScan(nullptr, "48 8B 05 ? ? ? ? C7 47");
+	std::uint8_t* xref = MEM::PatternScan(nullptr, "48 8B 05 ? ? ? ? C7 47", true);
 	if (xref == nullptr)
 	{
 		using fOriginal = YYRValue & __fastcall(CInstance*, CInstance*, YYRValue&, int, int, YYRValue**);

@@ -836,14 +836,14 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 						manager->children = newArray;
 						ImGui::InsertNotification({ ImGuiToastType::Success });
 						// Force a refresh to display the new member
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetCurveList, &CurveList, NULL, NULL);
+						API::GetCurveList(&CurveList);
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("Edit##animationCurves"))
 						openedManagers |= MANAGERS_CURVES;
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##animationCurves"))
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetCurveList, &CurveList, NULL, NULL);
+						API::GetCurveList(&CurveList);
 					ImGui::SameLine();
 					ImGui::InputText("Search##animationCurves", &curveSearch);
 					for (auto& resource : CurveList) {
@@ -864,13 +864,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##fonts"))
-					{
-						void** threadInfo = new void* [2] {
-							reinterpret_cast<void*>(&FontList),
-								reinterpret_cast<void*>(new int(eAssetType::ASSET_FONT))
-							};
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetResourceListAsync, threadInfo, NULL, NULL);
-					}
+						API::GetResourceList(&FontList, eAssetType::ASSET_FONT);
 					ImGui::SameLine();
 					ImGui::InputText("Search##fonts", &fontSearch);
 					for (auto& resource : FontList) {
@@ -887,7 +881,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 						if (obj && obj->m_pObj)
 						{
 							selectedObj.id = obj->m_pObj->m_ID;
-							::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetObjectList, &ObjectList, NULL, NULL);
+							API::GetObjectList(&ObjectList);
 							ImGui::InsertNotification({ ImGuiToastType::Success });
 						}
 						else
@@ -898,7 +892,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 						openedManagers |= MANAGERS_OBJECTS;
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##objects"))
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetObjectList, &ObjectList, NULL, NULL);
+						API::GetObjectList(&ObjectList);
 					ImGui::SameLine();
 					ImGui::InputText("Search##objects", &objSearch);
 					for (auto& resource : ObjectList) {
@@ -919,13 +913,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##psystems"))
-					{
-						void** threadInfo = new void* [2] {
-							reinterpret_cast<void*>(&PSysList),
-							reinterpret_cast<void*>(new int(eAssetType::ASSET_PARTICLE))
-						};
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetResourceListAsync, threadInfo, NULL, NULL);
-					}
+						API::GetResourceList(&PSysList, eAssetType::ASSET_PARTICLE);
 					ImGui::SameLine();
 					ImGui::InputText("Search##psystems", &pSysSearch);
 					for (auto& resource : PSysList) {
@@ -961,14 +949,14 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 						manager->names = newNameArray;
 						ImGui::InsertNotification({ ImGuiToastType::Success });
 						// Force a refresh to display the new member
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetPathList, &PathList, NULL, NULL);
+						API::GetPathList(&PathList);
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("Edit##paths"))
 						openedManagers |= MANAGERS_PATHS;
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##paths"))
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetPathList, &PathList, NULL, NULL);
+						API::GetPathList(&PathList);
 					ImGui::SameLine();
 					ImGui::InputText("Search##paths", &pathSearch);
 					for (auto& resource : PathList) {
@@ -987,13 +975,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 						openedManagers |= MANAGERS_ROOMS;
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##rooms"))
-					{
-						void** threadInfo = new void* [2] {
-							reinterpret_cast<void*>(&RoomList),
-								reinterpret_cast<void*>(new int(eAssetType::ASSET_ROOM))
-							};
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetResourceListAsync, threadInfo, NULL, NULL);
-					}
+						API::GetResourceList(&RoomList, eAssetType::ASSET_ROOM);
 					ImGui::SameLine();
 					ImGui::InputText("Search##rooms", &roomSearch);
 					for (auto& resource : RoomList) {
@@ -1022,8 +1004,8 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 					}
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##scripts")) {
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetScriptList, &ScriptList, NULL, NULL);
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetCodeList, &codeList, NULL, NULL);
+						API::GetScriptList(&ScriptList);
+						API::GetCodeList(&codeList);
 					}
 					ImGui::SameLine();
 					ImGui::InputText("Search##scripts", &scriptSearch);
@@ -1051,7 +1033,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 						codeViewerOpen = true;
 					ImGui::SameLine();
 					if (ImGui::Button("Refresh##code"))
-						::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetCodeList, &codeList, NULL, NULL);
+						API::GetCodeList(&codeList);
 					ImGui::SameLine();
 					ImGui::InputText("Search##code", &codeSearch);
 					for (auto& resource : codeList) {
@@ -1178,7 +1160,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 							}
 							ImGui::SameLine();
 							if (ImGui::Button("Refresh##objCode"))
-								::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetCodeList, &codeList, NULL, NULL);
+								API::GetCodeList(&codeList);
 							ImGui::InputText("Search##objCode", &codeSearch);
 							if (selectedCode.idx >= 0)
 								if (ImGui::Button("Edit in code manager"))
@@ -1338,7 +1320,7 @@ obj->m_ID);
 				}
 				ImGui::SameLine();
 				if (ImGui::Button("Refresh##globals"))
-					::CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)API::GetGlobalVariables, &g_Variables, NULL, NULL);
+					API::GetGlobalVariables(&g_Variables);
 
 				ImGui::InputText("Search##globals", &g_VarSearch);
 				ImGui::InputText("Value##globals", &Selectedg_VarValue);

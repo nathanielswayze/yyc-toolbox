@@ -9,6 +9,7 @@
 #include <format>
 #include <iomanip>
 #include "utils/api.h"
+#include "utils/code/decompiler.h"
 
 LPCSTR Drawing::lpWindowName = "YYC Toolbox";
 ImVec2 Drawing::vWindowSize = { 350, 200 };
@@ -65,6 +66,7 @@ std::vector<UI::CodeItem> codeList{};
 UI::CodeItem selectedCode;
 std::string currentDisasm;
 std::string currentCode;
+std::string currentTranspiled;
 
 std::string executorCode;
 
@@ -1441,6 +1443,17 @@ obj->m_ID);
 							if (YY_ISINVALIDPTR(decompThread))
 								ImGui::InsertNotification({ ImGuiToastType::Error, "Failed to create a new thread. Thread handle given by ::CreateThread is invalid." });
 						}
+
+						DecompilerInput* input = new DecompilerInput();
+						input->pFunc = func;
+						DecompilerResult* result = DECOMPILER::DecompileFn(input);
+						if (result->bSuccess)
+						{
+							currentTranspiled = std::format(R"(// Lines of code: {}
+// Decompiler confidence: {}
+{})", result->nLines, result->fConfidence, result->pCode);
+						} else
+							ImGui::InsertNotification({ ImGuiToastType::Error, "Failed to transpile machine to GML code. Check the debug console for more information." });
 					}
 					if (decompThread) {
 						DWORD waitResult = WaitForSingleObject(decompThread, 0);
@@ -1485,6 +1498,7 @@ obj->m_ID);
 						}
 					}
 					ImGui::InputTextMultiline("Decompiled##code", &currentCode);
+					ImGui::InputTextMultiline("Transpiled##code", &currentTranspiled);
 					ImGui::Text("note: proper decompilation of code requires the assembly to be uploaded to my servers,");
 					ImGui::Text("where it will be properly decompiled into c++ and sent back for display/transpiling.");
 					ImGui::Text("by checking the box below, you acknowledge that the disassembly, including the");

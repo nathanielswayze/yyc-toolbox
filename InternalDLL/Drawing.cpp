@@ -1445,13 +1445,14 @@ obj->m_ID);
 						}
 
 						DecompilerInput* input = new DecompilerInput();
+						input->pName = vars->pGMLFuncs[selectedCode.idx].pName;
 						input->pFunc = func;
-						DecompilerResult* result = DECOMPILER::DecompileFn(input);
+						DecompilerResult* result = DECOMPILER::DecompileFn(input); // TODO: Make this multi-threaded, or optimize and make it faster
 						if (result->bSuccess)
 						{
 							currentTranspiled = std::format(R"(// Lines of code: {}
-// Decompiler confidence: {}
-{})", result->nLines, result->fConfidence, result->pCode);
+// {}
+{})", result->nLines, result->pStatus == nullptr ? "No additional information available." : result->pStatus, result->pCode);
 						} else
 							ImGui::InsertNotification({ ImGuiToastType::Error, "Failed to transpile machine to GML code. Check the debug console for more information." });
 					}

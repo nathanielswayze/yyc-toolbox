@@ -819,7 +819,7 @@ struct YYObjectBase : CInstanceBase
 	YYObjectBase* m_Flink;
 	YYObjectBase* m_Blink;
 	YYObjectBase* m_Prototype;
-	const char* m_Class;
+	char* m_Class;
 	FNGetOwnProperty m_GetOwnProperty;
 	FNDeleteProperty m_DeleteProperty;
 	FNDefineOwnProperty m_DefineOwnProperty;
@@ -887,7 +887,7 @@ public:
 typedef	void(*PFUNC_YYGML)(CInstance* _pSelf, CInstance* _pOther);
 struct YYGMLFuncs
 {
-	const char* pName;
+	char* pName;
 	PFUNC_YYGML pFunc;
 	YYVAR* pFuncVar;
 };
@@ -957,7 +957,7 @@ struct LinkedList
 
 struct CObjectGM
 {
-	const char* m_Name;
+	char* m_Name;
 	CObjectGM* m_ParentObject;
 	CHashMap<int, CObjectGM*, 2>* m_ChildrenMap;
 	CHashMap<int, CEvent*, 3>* m_EventsMap;

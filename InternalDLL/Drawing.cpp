@@ -971,7 +971,7 @@ RAM Usage: {} MB)"""", __DATE__, __TIME__, io.DeltaTime, io.Framerate, RAMUsage)
 					if (ImGui::BeginItemTooltip())
 					{
 						ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
-						ImGui::TextUnformatted("Something to note: gml_GlobalScripts are 99% of the time useless. You may ignore it. The real deal are gml_Scripts.");
+						ImGui::TextUnformatted("Something to note: gml_GlobalScripts are executed when the game is launched, and gml_Scripts are the one that are called by code.");
 						ImGui::PopTextWrapPos();
 						ImGui::EndTooltip();
 					}

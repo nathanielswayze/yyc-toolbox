@@ -2950,7 +2950,7 @@ public:
 
 			int len = (int)strlen(_pStr) + 1;
 			char* pCopy = ensureSpace(len);
-			strcpy(pCopy, _pStr);
+			strcpy_s(pCopy, _pStr);
 			m_curr += len - 1;
 
 		} // endif
@@ -2966,7 +2966,7 @@ public:
 		STRING_RValue(&pCurrent, &pBase, &maxLen, &_val);
 		int len = (int)((pCurrent - pBase) + 1);
 		char* pCopy = ensureSpace(len);
-		strcpy(pCopy, pBase);
+		strcpy_s(pCopy, pBase);
 		m_curr += len - 1;
 		YYFree(pBase);
 
@@ -2979,7 +2979,7 @@ public:
 		yyitoa(_n, a, 10);
 		int len = (int)strlen(a);
 		char* pCopy = ensureSpace(len + 1);
-		strcpy(pCopy, a);
+		strcpy_s(pCopy, a);
 		m_curr += len;
 		return *this;
 	} // end integer

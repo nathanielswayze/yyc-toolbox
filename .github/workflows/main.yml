@@ -22,11 +22,9 @@ jobs:
         run: |
           nuget restore .\InternalDLL.sln
           msbuild .\InternalDLL.sln  /t:build /p:Configuration=Release|x86
-      - name: Upload dotnet test results
+      - name: Upload ${{ matrix.os }} CLI
         uses: actions/upload-artifact@v4
-          with:
-            name: dotnet-results
-            path: ./
-          # Use always() to always run this step to publish test results when there are test failures
-          if: ${{ always() }}
+        with:
+             name: CLI
+             path: ./
 

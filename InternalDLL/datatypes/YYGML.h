@@ -1,6 +1,7 @@
 // Copyright © Opera Norway AS. All rights reserved.
 // This file is an original work developed by Opera.
 #define YYLLVM
+#define _CRT_SECURE_NO_DEPRECATE
 
 #ifndef __YYGML_H__
 #define __YYGML_H__

@@ -1,0 +1,36 @@
+name: Validation of Console App
+on:
+  pull_request:
+    branches: [ master, develop, release/*, hotfix/* ]
+jobs:
+  run-selected-unittests:
+    runs-on: windows-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    name: Run MSBuild and VSTest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.1.0
+        id: checkout_code
+            
+      - name: Setup MSBuild and add to PATH
+        uses: microsoft/setup-msbuild@v1.0.0
+        id: setup_msbuild
+              
+      - name: Run MSBuild
+        id: run_msbuild
+        run: |
+          msbuild .\InternalDLL.sln  /t:clean /p:Configuration=Release|x86
+          nuget restore .\InternalDLL.sln
+          msbuild .\InternalDLL.sln  /t:build /p:Configuration=Release|x86
+- name: Setup VSTest and add to PATH
+        uses: darenm/Setup-VSTest@v1
+        id: setup_vstest
+        - name: Upload dotnet test results
+          uses: actions/upload-artifact@v4
+          with:
+            name: dotnet-results
+            path: ./
+          # Use always() to always run this step to publish test results when there are test failures
+          if: ${{ always() }}
